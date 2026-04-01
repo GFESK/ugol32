@@ -15,15 +15,15 @@ button { cursor: pointer; }
 
 /* --- Custom Properties --- */
 :root {
-  --bg: #FFFFFF;
-  --bg-alt: #F2F2F0;
-  --surface: #0A0A0A;
-  --text: #1A1A1A;
-  --text-muted: #6B7280;
+  --bg: #FAFAF8;
+  --bg-alt: #F0EFEC;
+  --surface: #1C1C1E;
+  --text: #2C2C2E;
+  --text-muted: #7A7D85;
   --text-inv: #FFFFFF;
-  --accent: #DC2626;
-  --accent-hover: #B91C1C;
-  --accent-glow: rgba(220, 38, 38, 0.15);
+  --accent: #A0522D;
+  --accent-hover: #8B4226;
+  --accent-glow: rgba(160, 82, 45, 0.12);
   --font-display: 'Unbounded', sans-serif;
   --font-body: 'Onest', sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -102,8 +102,7 @@ button { cursor: pointer; }
   font-size: 0.82rem;
   font-weight: 600;
   color: rgba(255,255,255,0.7);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.04em;
   position: relative;
   padding: 4px 0;
 }
@@ -244,7 +243,7 @@ button { cursor: pointer; }
   position: absolute;
   inset: 0;
   background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80') center/cover no-repeat;
-  filter: grayscale(40%);
+  filter: grayscale(20%);
   transform: scale(1.05);
   transition: transform 8s linear;
 }
@@ -264,7 +263,7 @@ button { cursor: pointer; }
   width: 35%;
   height: 140%;
   background: var(--accent);
-  opacity: 0.07;
+  opacity: 0.03;
   transform: skewX(-12deg);
   pointer-events: none;
 }
@@ -284,7 +283,7 @@ button { cursor: pointer; }
   font-weight: 600;
   color: var(--accent);
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.12em;
   margin-bottom: 1.5rem;
   opacity: 0;
   animation: fadeSlideUp 0.8s 0.3s var(--ease) forwards;
@@ -337,7 +336,7 @@ button { cursor: pointer; }
   font-size: 0.82rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.08em;
   padding: 1rem 2.4rem;
   border-radius: 3px;
   transition: all 0.3s var(--ease);
@@ -350,8 +349,8 @@ button { cursor: pointer; }
 }
 .btn-primary:hover {
   background: var(--accent-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(220,38,38,0.35);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(160,82,45,0.18);
 }
 .btn-outline {
   border: 2px solid rgba(255,255,255,0.3);
@@ -380,7 +379,7 @@ button { cursor: pointer; }
 }
 .hero-scroll-line {
   width: 1px; height: 48px;
-  background: linear-gradient(to bottom, var(--accent), transparent);
+  background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
   animation: scrollPulse 2s infinite;
 }
 
@@ -406,7 +405,7 @@ button { cursor: pointer; }
   content: '';
   position: absolute;
   top: 0; left: 0;
-  width: 100%; height: 6px;
+  width: 100%; height: 2px;
   background: var(--accent);
 }
 
@@ -422,7 +421,7 @@ button { cursor: pointer; }
   font-weight: 600;
   color: var(--accent);
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.12em;
   margin-bottom: 1rem;
 }
 .section-tag::before,
@@ -435,8 +434,7 @@ button { cursor: pointer; }
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 3.5vw, 2.8rem);
   font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   line-height: 1.15;
 }
 .section-title--light {
@@ -461,8 +459,8 @@ button { cursor: pointer; }
   transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
 }
 .service-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.15);
 }
 .service-card-img {
   position: relative;
@@ -472,12 +470,12 @@ button { cursor: pointer; }
 .service-card-img img {
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: grayscale(100%);
+  filter: grayscale(30%);
   transition: filter 0.6s var(--ease), transform 0.6s var(--ease);
 }
 .service-card:hover .service-card-img img {
   filter: grayscale(0%);
-  transform: scale(1.08);
+  transform: scale(1.03);
 }
 /* Red line accent on card */
 .service-card-img::after {
@@ -499,7 +497,6 @@ button { cursor: pointer; }
   font-size: 1rem;
   font-weight: 700;
   color: var(--text-inv);
-  text-transform: uppercase;
   letter-spacing: 0.03em;
   margin-bottom: 0.6rem;
 }
@@ -561,7 +558,7 @@ button { cursor: pointer; }
   transition: transform 0.4s var(--ease);
 }
 .advantage-item:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
 }
 /* Vertical separator between items */
 .advantage-item:not(:last-child)::after {
@@ -600,8 +597,7 @@ button { cursor: pointer; }
   font-size: 0.92rem;
   font-weight: 600;
   color: var(--text);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0;
   margin-bottom: 0.3rem;
 }
 .advantage-desc {
@@ -625,7 +621,7 @@ button { cursor: pointer; }
   position: absolute;
   top: -20%; right: -10%;
   width: 500px; height: 500px;
-  border: 60px solid rgba(220,38,38,0.04);
+  border: 40px solid rgba(160,82,45,0.02);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -634,7 +630,7 @@ button { cursor: pointer; }
   position: absolute;
   bottom: -15%; left: -8%;
   width: 350px; height: 350px;
-  border: 40px solid rgba(10,10,10,0.03);
+  border: 40px solid rgba(44,44,46,0.02);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -761,9 +757,9 @@ textarea.form-control {
 }
 .form-message.error {
   display: block;
-  background: rgba(220, 38, 38, 0.1);
+  background: rgba(160, 82, 45, 0.08);
   color: var(--accent);
-  border: 1px solid rgba(220, 38, 38, 0.2);
+  border: 1px solid rgba(160, 82, 45, 0.15);
 }
 
 /* ============================================
@@ -779,7 +775,7 @@ textarea.form-control {
   content: '';
   position: absolute;
   top: 0; left: 0;
-  width: 100%; height: 3px;
+  width: 100%; height: 1px;
   background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 30%, transparent 30%);
 }
 
@@ -809,7 +805,7 @@ textarea.form-control {
   font-weight: 700;
   color: var(--text-inv);
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.08em;
   margin-bottom: 1.2rem;
 }
 .footer-links a {
@@ -859,7 +855,7 @@ textarea.form-control {
 }
 .footer-socials a:hover {
   border-color: var(--accent);
-  background: rgba(220,38,38,0.1);
+  background: rgba(160,82,45,0.08);
 }
 .footer-socials svg {
   width: 18px; height: 18px;
