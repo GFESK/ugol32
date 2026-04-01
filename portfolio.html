@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Портфолио | Наши работы | Угол32</title>
+  <meta name="description" content="Портфолио работ компании Угол32: ремонт квартир, заборы, навесы, фасады в Брянске. Фото реальных проектов.">
+  <meta property="og:title" content="Портфолио | Угол32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .page-banner {
+      position: relative; min-height: 340px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--surface); overflow: hidden; margin-top: var(--header-h);
+    }
+    .page-banner-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80') center/cover no-repeat;
+      filter: grayscale(60%); opacity: 0.3;
+    }
+    .page-banner-content { position: relative; z-index: 2; text-align: center; }
+    .page-banner h1 {
+      font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900; color: var(--text-inv); text-transform: uppercase;
+    }
+    .page-banner .breadcrumb { margin-top: 0.8rem; font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+    .page-banner .breadcrumb a { color: var(--accent); }
+
+    /* Filters */
+    .portfolio-section { padding: 4rem 0 7rem; background: var(--bg); }
+    .filter-bar {
+      display: flex; justify-content: center; gap: 0.6rem;
+      margin-bottom: 3rem; flex-wrap: wrap;
+    }
+    .filter-btn {
+      font-family: var(--font-body); font-size: 0.8rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 0.7rem 1.5rem; border-radius: 3px;
+      border: 1px solid rgba(0,0,0,0.12); color: var(--text-muted);
+      transition: all 0.3s var(--ease); cursor: pointer;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent); color: var(--text-inv);
+      border-color: var(--accent);
+    }
+
+    /* Gallery Grid */
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .gallery-item {
+      position: relative; border-radius: 4px; overflow: hidden;
+      aspect-ratio: 4/3; cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: grayscale(50%);
+      transition: filter 0.5s var(--ease), transform 0.5s var(--ease);
+    }
+    .gallery-item:hover img {
+      filter: grayscale(0%); transform: scale(1.06);
+    }
+    .gallery-item-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 60%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 1.5rem;
+      opacity: 0; transition: opacity 0.4s var(--ease);
+    }
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+    .gallery-item-tag {
+      font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--accent); margin-bottom: 0.3rem;
+    }
+    .gallery-item-title {
+      font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+      color: var(--text-inv);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,0.92);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s;
+    }
+    .lightbox.open { opacity: 1; pointer-events: all; }
+    .lightbox img {
+      max-width: 90vw; max-height: 85vh;
+      object-fit: contain; border-radius: 4px;
+      transform: scale(0.92); transition: transform 0.4s var(--ease);
+    }
+    .lightbox.open img { transform: scale(1); }
+    .lightbox-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-inv); font-size: 2rem; cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.2); border-radius: 50%;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .lightbox-close:hover {
+      border-color: var(--accent); background: rgba(220,38,38,0.15);
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .page-banner { min-height: 240px; }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">УГОЛ<span>32</span></a>
+      <nav class="nav-links">
+        <a href="index.html">Главная</a>
+        <a href="uslugi.html">Услуги</a>
+        <a href="portfolio.html" class="active">Портфолио</a>
+        <a href="about.html">О нас</a>
+        <a href="contacts.html">Контакты</a>
+        <a href="blog.html">Блог</a>
+      </nav>
+      <a href="tel:+7XXXXXXXXXX" class="header-phone">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        +7 (XXX) XXX-XX-XX
+      </a>
+      <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-overlay"></div>
+  <nav class="mobile-nav">
+    <a href="index.html">Главная</a><a href="uslugi.html">Услуги</a><a href="portfolio.html">Портфолио</a>
+    <a href="about.html">О нас</a><a href="contacts.html">Контакты</a><a href="blog.html">Блог</a>
+    <a href="tel:+7XXXXXXXXXX" class="mobile-phone">+7 (XXX) XXX-XX-XX</a>
+  </nav>
+
+  <main>
+    <section class="page-banner">
+      <div class="page-banner-bg"></div>
+      <div class="page-banner-content">
+        <h1>Наши работы</h1>
+        <div class="breadcrumb"><a href="index.html">Главная</a> / Портфолио</div>
+      </div>
+    </section>
+
+    <section class="portfolio-section">
+      <div class="container">
+        <div class="filter-bar reveal">
+          <button class="filter-btn active" data-filter="all">Все</button>
+          <button class="filter-btn" data-filter="otdelka">Отделка</button>
+          <button class="filter-btn" data-filter="zabory">Заборы</button>
+          <button class="filter-btn" data-filter="navesy">Навесы</button>
+          <button class="filter-btn" data-filter="fasady">Фасады</button>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item reveal" data-category="otdelka">
+            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=450&fit=crop&q=80" alt="Ремонт гостиной" loading="lazy">
+            <div class="gallery-item-overlay"><div class="gallery-item-tag">Отделка</div><div class="gallery-item-title">Ремонт гостиной</div></div>
+          </div>
+          <div class="gallery-item reveal" data-category="zabory">
+            <img src="https://images.unsplash.com/photo-1619322704995-5215d5f47a75?w=600&h=450&fit=crop&q=80" alt="Забор из профнастила" loading="lazy">
+            <div class="gallery-item-overlay"><div class="gallery-item-tag">Заборы</div><div class="gallery-item-title">Забор из профнастила</div></div>
+          </div>
+          <div class="gallery-item reveal" data-category="navesy">
+            <img src="https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=600&h=450&fit=crop&q=80" alt="Навес для автомобиля" loading="lazy">
+            <div class="gallery-item-overlay"><div class="gallery-item-tag">Навесы</div><div class="gallery-item-title">Навес для автомобиля</div></div>
+          </div>
+          <div class="gallery-item reveal" data-category="fasady">
+            <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&h=450&fit=crop&q=80" alt="Отделка фасада дома" loading="lazy">
+            <div class="gallery-item-overlay"><div class="gallery-item-tag">Фасады</div><div class="gallery-item-title">Отделка фасада</div></div>
+          </div>
+          <div class="gallery-item reveal" data-category="otdelka">
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&h=450&fit=crop&q=80" alt="Ремонт кухни" loading="lazy">
+            <div class="gallery-item-overlay"><div class="gallery-item-tag">Отделка</div><div class="gallery-item-title">Ремонт кухни</div></div>
+          </div>
+          <div class="gallery-item reveal" data-category="zabory">
+            <img src="https://images.unsplash.com/photo-1761856906819-886f93385cf4?w=600&h=450&fit=crop&q=80" alt="Кирпичный забор" loading="lazy">
+            <div class="gallery-item-overlay"><div class="gallery-item-tag">Заборы</div><div class="gallery-item-title">Кирпичный забор с ковкой</div></div>
+          </div>
+          <div class="gallery-item reveal" data-category="navesy">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=450&fit=crop&q=80" alt="Кровля дома" loading="lazy">
+            <div class="gallery-item-overlay"><div class="gallery-item-tag">Навесы</div><div class="gallery-item-title">Монтаж кровли</div></div>
+          </div>
+          <div class="gallery-item reveal" data-category="otdelka">
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&h=450&fit=crop&q=80" alt="Ремонт ванной" loading="lazy">
+            <div class="gallery-item-overlay"><div class="gallery-item-tag">Отделка</div><div class="gallery-item-title">Ремонт ванной комнаты</div></div>
+          </div>
+          <div class="gallery-item reveal" data-category="fasady">
+            <img src="https://images.unsplash.com/photo-1769016760743-eb89fdfdd32e?w=600&h=450&fit=crop&q=80" alt="Фасад сайдингом" loading="lazy">
+            <div class="gallery-item-overlay"><div class="gallery-item-tag">Фасады</div><div class="gallery-item-title">Обшивка сайдингом</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="Закрыть">&times;</button>
+    <img src="" alt="">
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">УГОЛ<span>32</span></a>
+          <p>Качественный ремонт квартир, домов, установка заборов и навесов под ключ в Брянске и области.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Навигация</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Главная</a></li><li><a href="uslugi.html">Услуги</a></li>
+            <li><a href="portfolio.html">Портфолио</a></li><li><a href="about.html">О нас</a></li>
+            <li><a href="contacts.html">Контакты</a></li><li><a href="blog.html">Блог</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Услуги</div>
+          <ul class="footer-links">
+            <li><a href="uslugi.html">Внутренняя отделка</a></li><li><a href="uslugi.html">Заборы и ограждения</a></li>
+            <li><a href="uslugi.html">Навесы и кровля</a></li><li><a href="uslugi.html">Отделка фасадов</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Контакты</div>
+          <ul class="footer-contacts">
+            <li><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><a href="tel:+7XXXXXXXXXX">+7 (XXX) XXX-XX-XX</a></li>
+            <li><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg><a href="mailto:info@ugol32.ru">info@ugol32.ru</a></li>
+            <li><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>г. Брянск</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Угол32. Все права защищены.</span>
+        <span>Ремонт и строительство в Брянске</span>
+      </div>
+    </div>
+  </footer>
+
+  <a href="tel:+7XXXXXXXXXX" class="mobile-call-btn">
+    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    Позвонить
+  </a>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Portfolio filters
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.gallery-item').forEach(item => {
+          if (filter === 'all' || item.dataset.category === filter) {
+            item.style.display = '';
+            item.style.animation = 'fadeSlideUp 0.5s var(--ease) forwards';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = lightbox.querySelector('img');
+
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const src = item.querySelector('img').src.replace('w=600', 'w=1200').replace('h=450', 'h=900');
+        lbImg.src = src;
+        lbImg.alt = item.querySelector('.gallery-item-title')?.textContent || '';
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  </script>
+</body>
+</html>

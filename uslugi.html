@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Услуги | Ремонт и строительство в Брянске | Угол32</title>
+  <meta name="description" content="Услуги компании Угол32: внутренняя отделка, заборы и ограждения, навесы и кровля, отделка фасадов. Брянск и область.">
+  <meta property="og:title" content="Услуги | Угол32">
+  <meta property="og:description" content="Полный спектр строительных и ремонтных услуг в Брянске.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Page Banner */
+    .page-banner {
+      position: relative;
+      min-height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface);
+      overflow: hidden;
+      margin-top: var(--header-h);
+    }
+    .page-banner-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1920&q=80') center/cover no-repeat;
+      filter: grayscale(60%);
+      opacity: 0.35;
+    }
+    .page-banner-content {
+      position: relative; z-index: 2;
+      text-align: center;
+    }
+    .page-banner h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      color: var(--text-inv);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+    .page-banner .breadcrumb {
+      margin-top: 0.8rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+    }
+    .page-banner .breadcrumb a { color: var(--accent); }
+    .page-banner .breadcrumb a:hover { text-decoration: underline; }
+
+    /* Service Blocks */
+    .service-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 500px;
+    }
+    .service-block:nth-child(even) .service-block-img { order: 2; }
+    .service-block:nth-child(even) .service-block-content { order: 1; }
+
+    .service-block-img {
+      position: relative;
+      overflow: hidden;
+    }
+    .service-block-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(30%);
+      transition: filter 0.6s var(--ease), transform 0.6s var(--ease);
+    }
+    .service-block:hover .service-block-img img {
+      filter: grayscale(0%);
+      transform: scale(1.04);
+    }
+    .service-block-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 5%;
+    }
+    .service-block:nth-child(odd) .service-block-content {
+      background: var(--bg);
+    }
+    .service-block:nth-child(even) .service-block-content {
+      background: var(--bg-alt);
+    }
+    .service-block-number {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      font-weight: 900;
+      color: rgba(220,38,38,0.1);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .service-block-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 800;
+      color: var(--text);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .service-block-desc {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      max-width: 480px;
+    }
+    .service-block-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.4rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .service-block-list li {
+      font-size: 0.9rem;
+      color: var(--text);
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .service-block-list li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0.55em;
+      width: 6px; height: 6px;
+      background: var(--accent);
+    }
+    .service-block .btn {
+      align-self: flex-start;
+    }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: var(--surface);
+      padding: 5rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 4px;
+      background: var(--accent);
+    }
+    .cta-banner h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 800;
+      color: var(--text-inv);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .cta-banner p {
+      color: rgba(255,255,255,0.6);
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (max-width: 768px) {
+      .service-block {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .service-block-img { height: 260px; order: 0 !important; }
+      .service-block-content { order: 1 !important; padding: 2.5rem 5%; }
+      .service-block-list { grid-template-columns: 1fr; }
+      .page-banner { min-height: 240px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">УГОЛ<span>32</span></a>
+      <nav class="nav-links">
+        <a href="index.html">Главная</a>
+        <a href="uslugi.html" class="active">Услуги</a>
+        <a href="portfolio.html">Портфолио</a>
+        <a href="about.html">О нас</a>
+        <a href="contacts.html">Контакты</a>
+        <a href="blog.html">Блог</a>
+      </nav>
+      <a href="tel:+7XXXXXXXXXX" class="header-phone">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        +7 (XXX) XXX-XX-XX
+      </a>
+      <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-overlay"></div>
+  <nav class="mobile-nav">
+    <a href="index.html">Главная</a>
+    <a href="uslugi.html">Услуги</a>
+    <a href="portfolio.html">Портфолио</a>
+    <a href="about.html">О нас</a>
+    <a href="contacts.html">Контакты</a>
+    <a href="blog.html">Блог</a>
+    <a href="tel:+7XXXXXXXXXX" class="mobile-phone">+7 (XXX) XXX-XX-XX</a>
+  </nav>
+
+  <main>
+    <!-- Banner -->
+    <section class="page-banner">
+      <div class="page-banner-bg"></div>
+      <div class="page-banner-content">
+        <h1>Наши услуги</h1>
+        <div class="breadcrumb"><a href="index.html">Главная</a> / Услуги</div>
+      </div>
+    </section>
+
+    <!-- Service 1 -->
+    <div class="service-block reveal">
+      <div class="service-block-img">
+        <img src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=800&q=80" alt="Внутренняя отделка" loading="lazy">
+      </div>
+      <div class="service-block-content">
+        <div class="service-block-number">01</div>
+        <h2 class="service-block-title">Внутренняя отделка</h2>
+        <p class="service-block-desc">Полный комплекс внутренних отделочных работ любой сложности. От черновой подготовки до чистовой финишной отделки. Используем проверенные материалы и современные технологии.</p>
+        <ul class="service-block-list">
+          <li>Штукатурка стен</li>
+          <li>Покраска и обои</li>
+          <li>Укладка полов</li>
+          <li>Монтаж потолков</li>
+          <li>Электромонтаж</li>
+          <li>Сантехника</li>
+          <li>Укладка плитки</li>
+          <li>Гипсокартон</li>
+        </ul>
+        <a href="contacts.html" class="btn btn-primary">Заказать</a>
+      </div>
+    </div>
+
+    <!-- Service 2 -->
+    <div class="service-block reveal">
+      <div class="service-block-img">
+        <img src="https://images.unsplash.com/photo-1619322704995-5215d5f47a75?w=800&q=80" alt="Заборы и ограждения" loading="lazy">
+      </div>
+      <div class="service-block-content">
+        <div class="service-block-number">02</div>
+        <h2 class="service-block-title">Заборы и ограждения</h2>
+        <p class="service-block-desc">Проектирование и установка заборов любого типа. Надежные ограждения для частных домов, дач и коммерческих объектов. Работаем с любыми материалами.</p>
+        <ul class="service-block-list">
+          <li>Профнастил</li>
+          <li>Евроштакетник</li>
+          <li>Кирпичные столбы</li>
+          <li>Сетка рабица</li>
+          <li>Кованые элементы</li>
+          <li>Калитки и ворота</li>
+          <li>3D-сетка</li>
+          <li>Комбинированные</li>
+        </ul>
+        <a href="contacts.html" class="btn btn-primary">Заказать</a>
+      </div>
+    </div>
+
+    <!-- Service 3 -->
+    <div class="service-block reveal">
+      <div class="service-block-img">
+        <img src="https://images.unsplash.com/photo-1632759145351-1d592919f522?w=800&q=80" alt="Навесы и кровля" loading="lazy">
+      </div>
+      <div class="service-block-content">
+        <div class="service-block-number">03</div>
+        <h2 class="service-block-title">Навесы и кровля</h2>
+        <p class="service-block-desc">Проектирование и монтаж навесов для автомобилей, террас, зон отдыха. Кровельные работы любой сложности с гарантией от протечек.</p>
+        <ul class="service-block-list">
+          <li>Поликарбонат</li>
+          <li>Металлочерепица</li>
+          <li>Профнастил</li>
+          <li>Мягкая кровля</li>
+          <li>Навесы для авто</li>
+          <li>Козырьки</li>
+          <li>Беседки</li>
+          <li>Ремонт кровли</li>
+        </ul>
+        <a href="contacts.html" class="btn btn-primary">Заказать</a>
+      </div>
+    </div>
+
+    <!-- Service 4 -->
+    <div class="service-block reveal">
+      <div class="service-block-img">
+        <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80" alt="Отделка фасадов" loading="lazy">
+      </div>
+      <div class="service-block-content">
+        <div class="service-block-number">04</div>
+        <h2 class="service-block-title">Отделка фасадов</h2>
+        <p class="service-block-desc">Преображение внешнего вида дома. Утепление, защита от влаги и ветра, декоративная отделка. Увеличиваем срок службы стен и снижаем теплопотери.</p>
+        <ul class="service-block-list">
+          <li>Сайдинг</li>
+          <li>Декоративная штукатурка</li>
+          <li>Искусственный камень</li>
+          <li>Утепление</li>
+          <li>Фасадные панели</li>
+          <li>Покраска</li>
+          <li>Вентилируемые фасады</li>
+          <li>Облицовка цоколя</li>
+        </ul>
+        <a href="contacts.html" class="btn btn-primary">Заказать</a>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="cta-banner reveal">
+      <div class="container">
+        <h2>Нужна консультация?</h2>
+        <p>Оставьте заявку и мы бесплатно рассчитаем стоимость ваших работ</p>
+        <a href="contacts.html" class="btn btn-primary">Оставить заявку</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">УГОЛ<span>32</span></a>
+          <p>Качественный ремонт квартир, домов, установка заборов и навесов под ключ в Брянске и области.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Навигация</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="uslugi.html">Услуги</a></li>
+            <li><a href="portfolio.html">Портфолио</a></li>
+            <li><a href="about.html">О нас</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+            <li><a href="blog.html">Блог</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Услуги</div>
+          <ul class="footer-links">
+            <li><a href="uslugi.html">Внутренняя отделка</a></li>
+            <li><a href="uslugi.html">Заборы и ограждения</a></li>
+            <li><a href="uslugi.html">Навесы и кровля</a></li>
+            <li><a href="uslugi.html">Отделка фасадов</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Контакты</div>
+          <ul class="footer-contacts">
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              <a href="tel:+7XXXXXXXXXX">+7 (XXX) XXX-XX-XX</a>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+              <a href="mailto:info@ugol32.ru">info@ugol32.ru</a>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>г. Брянск</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Угол32. Все права защищены.</span>
+        <span>Ремонт и строительство в Брянске</span>
+      </div>
+    </div>
+  </footer>
+
+  <a href="tel:+7XXXXXXXXXX" class="mobile-call-btn">
+    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    Позвонить
+  </a>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

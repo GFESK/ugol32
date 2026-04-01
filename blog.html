@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Блог | Полезные статьи о ремонте | Угол32</title>
+  <meta name="description" content="Блог компании Угол32: полезные статьи о ремонте, строительстве, выборе материалов. Советы от профессионалов.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .page-banner {
+      position: relative; min-height: 340px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--surface); overflow: hidden; margin-top: var(--header-h);
+    }
+    .page-banner-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=1920&q=80') center/cover no-repeat;
+      filter: grayscale(60%); opacity: 0.25;
+    }
+    .page-banner-content { position: relative; z-index: 2; text-align: center; }
+    .page-banner h1 {
+      font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900; color: var(--text-inv); text-transform: uppercase;
+    }
+    .page-banner .breadcrumb { margin-top: 0.8rem; font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+    .page-banner .breadcrumb a { color: var(--accent); }
+
+    /* Blog grid */
+    .blog-section { padding: 5rem 0 7rem; }
+    .blog-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .blog-card {
+      background: var(--bg); border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 4px; overflow: hidden;
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    }
+    .blog-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+    }
+    .blog-card-img {
+      height: 220px; overflow: hidden;
+    }
+    .blog-card-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: grayscale(40%);
+      transition: filter 0.5s var(--ease), transform 0.5s var(--ease);
+    }
+    .blog-card:hover .blog-card-img img {
+      filter: grayscale(0%); transform: scale(1.06);
+    }
+    .blog-card-body { padding: 1.5rem; }
+    .blog-card-meta {
+      display: flex; align-items: center; gap: 1rem;
+      font-size: 0.75rem; font-weight: 600; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 0.8rem;
+    }
+    .blog-card-tag {
+      color: var(--accent); background: var(--accent-glow);
+      padding: 0.2rem 0.6rem; border-radius: 2px;
+    }
+    .blog-card-title {
+      font-family: var(--font-display); font-size: 1.05rem;
+      font-weight: 700; color: var(--text); line-height: 1.35;
+      margin-bottom: 0.7rem;
+      transition: color 0.3s;
+    }
+    .blog-card:hover .blog-card-title { color: var(--accent); }
+    .blog-card-excerpt {
+      font-size: 0.88rem; color: var(--text-muted);
+      line-height: 1.6; margin-bottom: 1.2rem;
+    }
+    .blog-card-link {
+      font-size: 0.78rem; font-weight: 700; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+    }
+    .blog-card-link svg {
+      width: 14px; height: 14px; fill: currentColor;
+      transition: transform 0.3s var(--ease);
+    }
+    .blog-card:hover .blog-card-link svg { transform: translateX(4px); }
+
+    @media (max-width: 768px) {
+      .blog-grid { grid-template-columns: 1fr; }
+      .page-banner { min-height: 240px; }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .blog-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">УГОЛ<span>32</span></a>
+      <nav class="nav-links">
+        <a href="index.html">Главная</a><a href="uslugi.html">Услуги</a>
+        <a href="portfolio.html">Портфолио</a><a href="about.html">О нас</a>
+        <a href="contacts.html">Контакты</a><a href="blog.html" class="active">Блог</a>
+      </nav>
+      <a href="tel:+7XXXXXXXXXX" class="header-phone">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        +7 (XXX) XXX-XX-XX
+      </a>
+      <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-overlay"></div>
+  <nav class="mobile-nav">
+    <a href="index.html">Главная</a><a href="uslugi.html">Услуги</a><a href="portfolio.html">Портфолио</a>
+    <a href="about.html">О нас</a><a href="contacts.html">Контакты</a><a href="blog.html">Блог</a>
+    <a href="tel:+7XXXXXXXXXX" class="mobile-phone">+7 (XXX) XXX-XX-XX</a>
+  </nav>
+
+  <main>
+    <section class="page-banner">
+      <div class="page-banner-bg"></div>
+      <div class="page-banner-content">
+        <h1>Блог</h1>
+        <div class="breadcrumb"><a href="index.html">Главная</a> / Блог</div>
+      </div>
+    </section>
+
+    <section class="blog-section">
+      <div class="container">
+        <div class="blog-grid">
+
+          <article class="blog-card reveal">
+            <div class="blog-card-img">
+              <img src="https://images.unsplash.com/photo-1619322704995-5215d5f47a75?w=600&h=400&fit=crop&q=80" alt="Выбор материала для забора" loading="lazy">
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <span class="blog-card-tag">Заборы</span>
+                <span>15 марта 2026</span>
+              </div>
+              <h2 class="blog-card-title">Как выбрать материал для забора: полное руководство</h2>
+              <p class="blog-card-excerpt">Разбираем плюсы и минусы профнастила, штакетника, кирпича и других материалов. Что лучше подходит для вашего участка?</p>
+              <a href="#" class="blog-card-link">
+                Читать
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="blog-card reveal">
+            <div class="blog-card-img">
+              <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop&q=80" alt="Ошибки при ремонте квартиры" loading="lazy">
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <span class="blog-card-tag">Ремонт</span>
+                <span>8 марта 2026</span>
+              </div>
+              <h2 class="blog-card-title">5 ошибок при ремонте квартиры, которые стоят дорого</h2>
+              <p class="blog-card-excerpt">Экономия на материалах, нарушение технологий, отсутствие проекта -- рассказываем, как избежать типичных промахов.</p>
+              <a href="#" class="blog-card-link">
+                Читать
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="blog-card reveal">
+            <div class="blog-card-img">
+              <img src="https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=600&h=400&fit=crop&q=80" alt="Навес поликарбонат или металлочерепица" loading="lazy">
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <span class="blog-card-tag">Навесы</span>
+                <span>1 марта 2026</span>
+              </div>
+              <h2 class="blog-card-title">Какой навес лучше: поликарбонат или металлочерепица?</h2>
+              <p class="blog-card-excerpt">Сравниваем два самых популярных материала для навесов по цене, долговечности, внешнему виду и простоте монтажа.</p>
+              <a href="#" class="blog-card-link">
+                Читать
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="blog-card reveal">
+            <div class="blog-card-img">
+              <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&h=400&fit=crop&q=80" alt="Утепление фасада" loading="lazy">
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <span class="blog-card-tag">Фасады</span>
+                <span>20 февраля 2026</span>
+              </div>
+              <h2 class="blog-card-title">Утепление фасада: когда это необходимо и какой материал выбрать</h2>
+              <p class="blog-card-excerpt">Пенопласт, минвата, пеноплекс -- разбираемся в материалах для утепления и считаем экономию на отоплении.</p>
+              <a href="#" class="blog-card-link">
+                Читать
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="blog-card reveal">
+            <div class="blog-card-img">
+              <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&h=400&fit=crop&q=80" alt="Ремонт ванной комнаты" loading="lazy">
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <span class="blog-card-tag">Ремонт</span>
+                <span>12 февраля 2026</span>
+              </div>
+              <h2 class="blog-card-title">Ремонт ванной комнаты: с чего начать и на что обратить внимание</h2>
+              <p class="blog-card-excerpt">Пошаговый план ремонта ванной: от демонтажа до финишной отделки. Важные нюансы гидроизоляции и вентиляции.</p>
+              <a href="#" class="blog-card-link">
+                Читать
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="blog-card reveal">
+            <div class="blog-card-img">
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop&q=80" alt="Кровля дома" loading="lazy">
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <span class="blog-card-tag">Кровля</span>
+                <span>5 февраля 2026</span>
+              </div>
+              <h2 class="blog-card-title">Как понять, что кровле нужен ремонт: 7 признаков</h2>
+              <p class="blog-card-excerpt">Протечки, потемнение потолка, наледь -- рассказываем о сигналах, которые нельзя игнорировать, и что делать.</p>
+              <a href="#" class="blog-card-link">
+                Читать
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">УГОЛ<span>32</span></a>
+          <p>Качественный ремонт квартир, домов, установка заборов и навесов под ключ в Брянске и области.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Навигация</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Главная</a></li><li><a href="uslugi.html">Услуги</a></li>
+            <li><a href="portfolio.html">Портфолио</a></li><li><a href="about.html">О нас</a></li>
+            <li><a href="contacts.html">Контакты</a></li><li><a href="blog.html">Блог</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Услуги</div>
+          <ul class="footer-links">
+            <li><a href="uslugi.html">Внутренняя отделка</a></li><li><a href="uslugi.html">Заборы и ограждения</a></li>
+            <li><a href="uslugi.html">Навесы и кровля</a></li><li><a href="uslugi.html">Отделка фасадов</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Контакты</div>
+          <ul class="footer-contacts">
+            <li><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><a href="tel:+7XXXXXXXXXX">+7 (XXX) XXX-XX-XX</a></li>
+            <li><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg><a href="mailto:info@ugol32.ru">info@ugol32.ru</a></li>
+            <li><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>г. Брянск</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Угол32. Все права защищены.</span>
+        <span>Ремонт и строительство в Брянске</span>
+      </div>
+    </div>
+  </footer>
+
+  <a href="tel:+7XXXXXXXXXX" class="mobile-call-btn">
+    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    Позвонить
+  </a>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
