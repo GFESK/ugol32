@@ -1,6 +1,6 @@
 /* ============================================
-   УГОЛ32 — Constructivist Brutalism
-   Black / White / Red — Raw precision
+   УГОЛ32 — Construction & Renovation
+   Orange / Dark Gray / White
    ============================================ */
 
 /* --- Reset & Base --- */
@@ -21,9 +21,9 @@ button { cursor: pointer; }
   --text: #2C2C2E;
   --text-muted: #7A7D85;
   --text-inv: #FFFFFF;
-  --accent: #A0522D;
-  --accent-hover: #8B4226;
-  --accent-glow: rgba(160, 82, 45, 0.12);
+  --accent: #F7941D;
+  --accent-hover: #E07A0C;
+  --accent-glow: rgba(247, 148, 29, 0.12);
   --font-display: 'Unbounded', sans-serif;
   --font-body: 'Onest', sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -80,15 +80,14 @@ button { cursor: pointer; }
 
 /* Logo */
 .logo {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: var(--text-inv);
-  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
   position: relative;
 }
-.logo span {
-  color: var(--accent);
+.logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
 }
 
 /* Navigation */
@@ -791,9 +790,11 @@ textarea.form-control {
 }
 
 .footer-brand .logo {
-  font-size: 1.4rem;
   margin-bottom: 1rem;
   display: inline-block;
+}
+.footer-brand .logo-img {
+  height: 36px;
 }
 .footer-brand p {
   font-size: 0.88rem;

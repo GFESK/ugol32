@@ -38,7 +38,7 @@ No build step, no dependencies to install.
 - CSS state classes: `.scrolled`, `.open`, `.active`, `.visible`
 - Scroll animations: add class `.reveal` (with optional `.reveal-delay-1` through `.reveal-delay-4`)
 - Animated counters: `data-count="100"` and `data-suffix="+"` attributes on elements
-- Images from Unsplash (external URLs), `images/` directory reserved for local assets
+- Images stored locally in `images/` (downloaded from Unsplash -- Unsplash is blocked in Russia without VPN)
 - Phone number placeholder: `+7XXXXXXXXXX` and `+7 (XXX) XXX-XX-XX` -- needs replacement with real number
 - Email: `info@ugol32.ru`
 
@@ -57,4 +57,4 @@ Header, footer, mobile nav, and mobile call button are duplicated across all 6 H
 
 **Portfolio filters**: `portfolio.html` uses `data-category` attributes on gallery items with values: `otdelka`, `zabory`, `navesy`, `fasady`. Filter buttons and lightbox logic are in inline `<script>` at the bottom of that file (not in `main.js`).
 
-**Images**: All images are currently external Unsplash URLs. The `images/` directory does not exist yet -- create it when local assets are added.
+**Images**: All images are local in `images/`. CSS background-image paths use `../images/` (relative to `css/` dir). When adding new images, use descriptive names matching the convention: `hero-*.jpg`, `service-*.jpg`, `portfolio-*.jpg`, `about-*.jpg`.
