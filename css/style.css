@@ -17,13 +17,13 @@ button { cursor: pointer; }
 :root {
   --bg: #FAFAF8;
   --bg-alt: #F0EFEC;
-  --surface: #1C1C1E;
-  --text: #2C2C2E;
+  --surface: #485253;
+  --text: #485253;
   --text-muted: #7A7D85;
   --text-inv: #FFFFFF;
-  --accent: #F7941D;
-  --accent-hover: #E07A0C;
-  --accent-glow: rgba(247, 148, 29, 0.12);
+  --accent: #FC8A17;
+  --accent-hover: #D97510;
+  --accent-glow: rgba(252, 138, 23, 0.12);
   --font-display: 'Unbounded', sans-serif;
   --font-body: 'Onest', sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
